@@ -1,6 +1,6 @@
 # wallet-stbchain
 
-> A Vue.js project
+> A WalletStbChain.js project
 
 ## Build Setup
 
