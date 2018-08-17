@@ -1,22 +1,28 @@
 <template>
     <div id="app">
-      <router-view/>
+      <mu-container>
+        <MyHeader></MyHeader>
+        <router-view/>
+        <MyFooter></MyFooter>
+      </mu-container>
     </div>
 </template>
 
 <script>
+import MyHeader from '@/components/MyHeader'
+import MyFooter from '@/components/MyFooter'
+import Index from '@/views/index'
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      msg: 'STB-Wallet'
+    }
+  },
+  components: {
+    MyHeader,
+    MyFooter,
+    Index
+  }
 }
 </script>
-
-<style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
-</style>
