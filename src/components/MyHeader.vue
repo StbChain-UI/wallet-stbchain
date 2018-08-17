@@ -1,11 +1,11 @@
 <template>
     <mu-appbar style="width: 100%;" color="primary">
-        <mu-button icon slot="left">
-            <mu-icon value="menu"></mu-icon>
-        </mu-button>
+        <!-- <mu-button icon slot="left"></mu-button> -->
         <mu-flex class="flex-demo" justify-content="center" fill>{{ msg }}</mu-flex>
         <mu-menu slot="right">
-            <mu-button flat> MENU </mu-button>
+            <mu-button flat>
+                <mu-icon value="menu"></mu-icon>
+            </mu-button>
             <mu-list slot="content">
                 <mu-list-item button>
                     <mu-list-item-content>

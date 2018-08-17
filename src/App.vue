@@ -11,7 +11,6 @@
 <script>
 import MyHeader from '@/components/MyHeader'
 import MyFooter from '@/components/MyFooter'
-import Index from '@/views/index'
 export default {
   name: 'App',
   data () {
@@ -21,8 +20,7 @@ export default {
   },
   components: {
     MyHeader,
-    MyFooter,
-    Index
+    MyFooter
   }
 }
 </script>

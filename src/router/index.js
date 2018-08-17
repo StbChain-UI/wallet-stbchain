@@ -9,11 +9,15 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'Index',
       component: index
     }, {
-      path: '/login',
-      name: 'login',
+      path: '/Index',
+      name: 'Index',
+      component: index
+    }, {
+      path: '/Login',
+      name: 'Login',
       component: login
     }
   ]
