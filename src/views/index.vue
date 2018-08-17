@@ -1,12 +1,12 @@
 <template>
   <mu-paper :z-depth="1">
     <mu-data-table :columns="columns" :sort.sync="sort" @sort-change="handleSortChange" :data="list">
-      <template slot-scope="scope">
+      <!-- <template slot-scope="scope">
         <td>{{scope.row.name}}</td>
         <td class="is-right">{{scope.row.calories}}</td>
         <td class="is-right">{{scope.row.fat}}</td>
         <td class="is-right">{{scope.row.carbs}}</td>
-      </template>
+      </template> -->
     </mu-data-table>
   </mu-paper>
 </template>
