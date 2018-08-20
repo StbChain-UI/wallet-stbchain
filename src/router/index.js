@@ -11,13 +11,19 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
+    { 
+      path: '/',  //默认路由
+      name: 'default',
+      component: index,
+      redirect: '/Market',
+    }, {
+      path: '/index',
       name: 'index',
       component: index,
+      redirect: '/Market',
       children:[
         {
-          path: '/',
+          path: '/Market',
           name: 'Market',
           component: Market,
         }, {
@@ -30,7 +36,7 @@ export default new Router({
           component: UserInfo,
         }
       ]
-    }, {
+    },{
       path: '/Login',
       name: 'Login',
       component: Login

@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'login',
+  name: 'Register',
   data () {
     return {
       msg: '注册页面'

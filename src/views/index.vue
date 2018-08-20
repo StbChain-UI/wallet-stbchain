@@ -11,10 +11,11 @@
 import MyHeader from '@/components/MyHeader'
 import MyFooter from '@/components/MyFooter'
 export default {
-  name: 'index',
+  name: 'Index',
   data () {
     return {
-      msg:'123'
+      msg:'123',
+      loading:true
     }
   },
   components: {
