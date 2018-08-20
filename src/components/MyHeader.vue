@@ -7,14 +7,14 @@
                 <mu-icon value="menu"></mu-icon>
             </mu-button>
             <mu-list slot="content">
-                <mu-list-item button>
+                <mu-list-item button to="/Register">
                     <mu-list-item-content>
                         <mu-list-item-title>注册</mu-list-item-title>
                     </mu-list-item-content>
                 </mu-list-item>
-                <mu-list-item button>
+                <mu-list-item button to="/Login">
                     <mu-list-item-content>
-                        <mu-list-item-title>登录</mu-list-item-title>
+                        <mu-list-item-title >登录</mu-list-item-title>
                     </mu-list-item-content>
                 </mu-list-item>
             </mu-list>

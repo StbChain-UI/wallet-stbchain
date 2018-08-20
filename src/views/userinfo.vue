@@ -1,16 +1,14 @@
 <template>
-    <div id="app">
-        <router-view/>
+    <div>
+        {{ msg }}
     </div>
 </template>
-
 <script>
 export default {
-  name: 'App',
+  name: 'login',
   data () {
     return {
-      msg: 'STB-Wallet',
-      size: 33
+      msg: '个人中心'
     }
   }
 }
