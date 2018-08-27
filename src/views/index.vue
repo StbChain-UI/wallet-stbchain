@@ -2,9 +2,11 @@
   <div>
     <MyHeader></MyHeader>
       <router-view/>
-      <div style="position: absolute;width: 100%;bottom: 0;" >
-        <MyFooter></MyFooter>
-      </div>
+      <keep-alive>
+        <div style="position: absolute;width: 100%;bottom: 0;" >
+          <MyFooter></MyFooter>
+        </div>
+      </keep-alive>
   </div>
 </template>
 <script>

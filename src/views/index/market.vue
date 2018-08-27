@@ -2,7 +2,7 @@
   <mu-paper :z-depth="0">
     <mu-list textline="two-line">
       <template v-for="item in list">
-        <mu-list-item avatar :ripple="false" button>
+        <mu-list-item avatar :ripple="false" button to="/Market/MarketDetail">
           <mu-list-item-action>
             <mu-avatar>
               <img src="favicon.ico">
