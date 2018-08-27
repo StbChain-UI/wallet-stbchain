@@ -1,5 +1,5 @@
 <template>
-    <mu-appbar style="width: 100%;" color="primary">
+    <mu-appbar style="width: 100%;" color="#262e45">
         <!-- <mu-button icon slot="left"></mu-button> -->
         <mu-flex class="flex-demo" justify-content="center" fill>{{ msg }}</mu-flex>
         <mu-menu slot="right">
