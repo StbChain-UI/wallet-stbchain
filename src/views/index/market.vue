@@ -1,23 +1,23 @@
 <template>
-  <mu-paper :z-depth="0">
+  <div class="mkt">
     <mu-list textline="two-line">
       <template v-for="item in list">
-        <mu-list-item avatar :ripple="false" button to="/Market/MarketDetail">
+        <mu-list-item avatar :ripple="false" button>
           <mu-list-item-action>
-            <mu-avatar>
+            <mu-avatar size="22">
               <img src="favicon.ico">
             </mu-avatar>
           </mu-list-item-action>
-          <mu-list-item-content>
+          <mu-list-item-content @click="RedirectToDetail()">
             <mu-list-item-title>
-              <span>资产：</span>
-              <span>{{ item.name }}</span>
+                <span>资产：</span>
+                <span class="item-name">{{ item.name }}</span>
             </mu-list-item-title>
-            <mu-list-item-sub-title style="color: rgba(0, 0, 0, .87)">
+            <mu-list-item-sub-title>
               单价：{{ item.price }} ￥
             </mu-list-item-sub-title>
             <mu-list-item-sub-title>
-              日涨跌：{{ item.upNum }}
+              日涨跌：<span :class="item.upNum>=0?'y':'n'">{{ item.upNum }}</span>
             </mu-list-item-sub-title>
           </mu-list-item-content>
           <mu-list-item-action >
@@ -30,7 +30,7 @@
         <!-- <br/><mu-divider></mu-divider> -->
       </template>
     </mu-list>
-  </mu-paper>
+  </div>
 </template>
 <script>
 export default {
@@ -64,6 +64,13 @@ export default {
           selects: false
         }
       ]
+    }
+  },
+  methods: {
+
+    // 跳转到价格详情页
+    RedirectToDetail(){
+      this.$router.push({ path: '/Market/MarketDetail'});
     }
   }
 }
