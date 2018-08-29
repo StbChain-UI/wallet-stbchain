@@ -22,7 +22,7 @@ theme.addCreateTheme( (theme) => {
   .mu-item-title .item-name{color:#00a9e0;}
   .mu-item-sub-title{color:#e7e7e7;}
   .mu-badge{background-color:#000;color:#e7e7e7;}
-  .mu-item-wrapper{padding:5px 0;border-bottom:1px #354574 solid;}
+  .mkt .mu-item-wrapper{padding:5px 0;border-bottom:1px #354574 solid;}
   .mu-popover{background-color:#000;}
   .mu-checkbox{color:rgba(0,0,0,.7);}
   
