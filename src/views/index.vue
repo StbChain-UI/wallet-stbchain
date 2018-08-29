@@ -1,9 +1,9 @@
 <template>
   <div>
     <MyHeader></MyHeader>
-    <mu-alert color="warning" @delete="IsLoginAlert = false" delete v-if="IsLoginAlert" transition="mu-scale-transition">
+    <!-- <mu-alert color="warning" @delete="IsLoginAlert = false" delete v-if="IsLoginAlert" transition="mu-scale-transition">
       <mu-icon left value="warning"></mu-icon>请先登录后操作
-    </mu-alert>
+    </mu-alert> -->
     <router-view/>
       <keep-alive>
         <div style="position: absolute;width: 100%;bottom: 0;" >
