@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/views/index'
 import Market from '@/views/index/market'
+import MarketDetail from '@/views/index/marketDetail'
 import Assets from '@/views/assets'
 import UserInfo from '@/views/userinfo'
 import Login from '@/views/login'
@@ -26,6 +27,10 @@ export default new Router({
           path: '/Market',
           name: 'Market',
           component: Market,
+        }, {
+          path: '/Market/MarketDetail',
+          name: 'MarketDetail',
+          component: MarketDetail,
         }, {
           path:'/Assets',
           name: 'Assets',

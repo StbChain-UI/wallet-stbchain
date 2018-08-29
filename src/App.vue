@@ -22,15 +22,6 @@ export default {
     });
     setTimeout(() => {
       loading.close();
-      this.$toast.message({
-        message:'请先登录后操作',
-        time:2000,
-        close:true,
-        position: 'top-start',
-        icon: 'warning',
-        color: 'warning',
-        textColor: '#000'
-      });
     }, 3000)
   }
 }
