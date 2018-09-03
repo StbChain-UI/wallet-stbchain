@@ -7,6 +7,7 @@
 
 <script>
 import F2 from '@antv/f2'
+import axios from 'axios'
 export default {
     name: 'MarketDetail',
     data (){
@@ -26,7 +27,9 @@ export default {
        }
     },
     mounted(){
-        
+        this.$axios.get('/assets/data/candle-sticks.json').then((res)=>{
+            console.log(res);
+        })
         let list  = this.chartData.slice(0, 50); // 仅显示100 个
         list.sort(function(obj1, obj2) {
             return obj1.time > obj2.time ? 1 : -1;

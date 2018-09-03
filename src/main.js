@@ -11,19 +11,20 @@ import bitshares from 'bitsharesjs'
 import axios from 'axios'
 import qs from 'qs'
 
+//axios 封装
+let axiosIns = axios.create({});
 Vue.config.productionTip = false
 Vue.use(MuseUI)
 Vue.use(Loading)
 Vue.use(Toast)
 
 //axios 封装
-let axiosIns = axios.create({});
 if (process.env.NODE_ENV == 'development') {  
-  axiosIns.defaults.baseURL = 'https://antv.alipay.com/';  //你的api部分地址例，开发环境
+  axiosIns.defaults.baseURL = '/api';  //你的api部分地址例，开发环境
 } else if (process.env.NODE_ENV == 'debug') {
-  axiosIns.defaults.baseURL = 'https://antv.alipay.com/'; //调试时
+  axiosIns.defaults.baseURL = '/api'; //调试时
 } else if (process.env.NODE_ENV == 'production') {
-  axiosIns.defaults.baseURL = 'https://antv.alipay.com/';   //你的api部分地址例，生产环境
+  axiosIns.defaults.baseURL = '/api';   //你的api部分地址例，生产环境
 }
 
 axiosIns.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest';
