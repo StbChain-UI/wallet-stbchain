@@ -75,3 +75,7 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.mu-item-action{min-width:32px;}
+.mkt .mu-item-sub-title{font-weight:300;font-size:0.8rem;}
+</style>

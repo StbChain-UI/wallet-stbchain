@@ -1,7 +1,10 @@
 <template>
     <div>
-        <h1>K线图</h1>
-        <canvas id="myChart"></canvas>
+        <h2>K线图</h2>
+        <canvas id="myChart" style="width:100%;height:auto;"></canvas>
+        <div class="tool-tip">
+
+        </div>
     </div>
 </template>
 
@@ -38,7 +41,7 @@ export default {
             obj.range = [obj.start, obj.end, obj.max, obj.min];
             obj.trend = obj.start <= obj.end ? 0 : 1;
         });
-
+        console.log(list);
         // Step 1: 创建 Chart 对象
         const chart = new F2.Chart({
             id: 'myChart',
@@ -71,32 +74,64 @@ export default {
             }
         });
 
-        chart.legend({
-            custom: true,
-            itemWidth: null,
-            items: [{
-                name: '上涨',
-                marker: 'circle',
-                fill: '#FC674D'
-            }, {
-                name: '下降',
-                marker: 'circle',
-                fill: '#9AC2AB'
-            }]
-        });
+        chart.legend(false);
 
-        chart.tooltip(false);
-        chart.schema().position('time*range').color('trend', function(trend) {
-            return ['#FC674D', '#fff'][trend];
-        }).shape('candle').style('trend', {
-            stroke: function stroke(val) {
-                if (val === 1) {
-                    return '#9AC2AB';
-                }
+        chart.schema().position('time*range').color('trend',function(trend) {
+            return ['#FC674D', '#53b987'][trend];
+        }).shape('candle');
+
+        chart.tooltip({
+            alwaysShow: true,
+            showCrosshairs: true,
+            crosshairsStyle: {
+                stroke: 'rgba(220,220,220,.7)'
+            },
+            showTooltipMarker: true,
+            custom: true,
+            onShow: function onShow(ev){
+                var items = ev.items;
+                var Data = items[0];
+                var el_date = null;
+                console.log(items)
+                tool_tip.innerHTML = '\
+                \<span class="on-date" style="position:absolute;white-space:nowrap;background:rgba(225,225,225,.3);padding:0 3px;">'+Data.title+'</span><span>开=<em>'+Data.origin.start+'</em></span>&ensp;<span>高='+Data.origin.max+'</span>&ensp;<span>低='+Data.origin.min+'</span>&ensp;<span>收='+Data.origin.end+'</span>\
+                '
+                el_date = document.getElementsByClassName('on-date')[0];
+                tool_tip.style.opacity = 1;
+                tool_tip.style.top = canvasTop + 'px';
+                el_date.style.top = canvasHeight - el_date.offsetHeight + 'px';
+                el_date.style.left = Data.x - 8 - el_date.offsetWidth/2 +  'px';
             }
         });
+
+        // chart.guide().line({
+        //     start: ['min', 25],
+        //     end: ['max', 25],
+        //     style: {
+        //     stroke: '#d0502d',
+        //     lineWidth: 1,
+        //     lineCap: 'round'
+        //     }
+        // });
+
+        //chart.line().position('time*range');
         chart.render();
     }
 }
 </script>
 
+<style lang="less" scoped>
+.tool-tip{
+    font-size:0.8rem;
+    font-weight:300;
+    color:#fff;
+    position: absolute;
+    background: rgba(22,22,22,.7);
+    border-radius: 2px;
+    left: 10px;
+    max-width: 98%;
+    padding:2px 8px;
+    opacity: 0;
+}
+
+</style>
