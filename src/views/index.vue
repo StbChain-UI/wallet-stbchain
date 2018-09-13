@@ -15,6 +15,9 @@
 <script>
 import MyHeader from '@/components/MyHeader'
 import MyFooter from '@/components/MyFooter'
+
+import {Apis} from "bitsharesjs-ws";
+var {ChainStore} = require("bitsharesjs")
 export default {
   name: 'Index',
   data () {
@@ -30,6 +33,19 @@ export default {
   },
   created(){
       this.IsLoginAlert = !this.IsLogin;
+      Apis.instance("wss://bitshares.dacplay.org/ws", true).init_promise.then((res) => {
+      //console.log(res);
+      console.log("connected to:", res[0].network_name);
+      ChainStore.subscribe(updateState);
+      this.connected = true;
+
+
+      let dynamicGlobal = null;
+      function updateState(object) {
+        dynamicGlobal = ChainStore.getObject("2.1.0");
+        console.log("ChainStore object update\n", dynamicGlobal ? dynamicGlobal.toJS():dynamicGlobal);
+      }
+    });
   }
 }
 </script>

@@ -9,7 +9,13 @@
 </template>
 
 <script>
-import F2 from '@antv/f2'
+import F2 from '@antv/f2';
+import {Apis} from "bitsharesjs-ws";
+var {ChainStore} = require("bitsharesjs");
+import {price} from 'bitsharesjs/dist/serializer/src/operations.js';
+const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar');
+
+console.log(price);
 export default {
     name: 'MarketDetail',
     data (){
@@ -29,12 +35,14 @@ export default {
        }
     },
     mounted(){
+        var chainID = '4018d7844c78f6a6c41c6a552b898022310fc5dec06da467ee7905a8dad512c8';
         var el_chart = document.getElementById('myChart');
         var tool_tip = document.getElementsByClassName('tool-tip')[0];
         var canvasTop = el_chart.offsetTop;
         var canvasLeft = el_chart.offsetLeft;
         var canvasHeight = el_chart.offsetHeight;
         let list  = this.chartData.slice(0, 50); // 仅显示100 个
+        var ma5 = 0;
         list.sort(function(obj1, obj2) {
             return obj1.time > obj2.time ? 1 : -1;
         });
@@ -43,10 +51,20 @@ export default {
             obj.trend = obj.start <= obj.end ? 0 : 1;
         });
         console.log(list);
+        for(var i=0;i<list.length;i++){
+            if(i>=4){
+                for(let j=0;j<5;j++){
+                    ma5 += list[i-j].end
+                }
+                list[i].ma5 = ma5/5;
+                ma5 = 0;
+            }
+        }
         // Step 1: 创建 Chart 对象
         const chart = new F2.Chart({
             id: 'myChart',
-            pixelRatio: window.devicePixelRatio // 指定分辨率
+            pixelRatio: window.devicePixelRatio, // 指定分辨率
+            plugins: ScrollBar
         });
 
         console.log(chart);
@@ -66,12 +84,20 @@ export default {
             }
         });
 
+        chart.axis('range', {
+            position: 'right'
+        });
+        chart.axis('ma5', false);
+
         chart.source(list, {
             range: {
                 tickCount: 5
             },
             time: {
                 tickCount: 3
+            },
+            ma5:{
+                tickCount: 5
             }
         });
 
@@ -105,18 +131,20 @@ export default {
             }
         });
 
-        // chart.guide().line({
-        //     start: ['min', 25],
-        //     end: ['max', 25],
-        //     style: {
-        //     stroke: '#d0502d',
-        //     lineWidth: 1,
-        //     lineCap: 'round'
-        //     }
-        // });
+        chart.line().position('time*ma5').shape('smooth').color('#FC674D');
+        chart.point().position('time*ma5').size('2').color('#FC674D');
 
         //chart.line().position('time*range');
+
+        chart.scrollBar({
+            mode: 'x',
+            xStyle: {
+                offsetY: 2
+            }
+        });
         chart.render();
+
+        console.log(Apis.instance().history_api().exec('get_market_history',['1.3.113']))
     }
 }
 </script>

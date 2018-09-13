@@ -6,7 +6,7 @@
           <mu-text-field v-model="validateForm.accountName" prop="accountName"></mu-text-field>
         </mu-form-item>
         <mu-form-item label="密码" prop="password" :rules="passwordRules" label-float>
-            <mu-text-field type="password" v-model="validateForm.password" prop="password"></mu-text-field>
+            <mu-text-field type="password" v-model="validateForm.password" prop="password" @keyup.enter="login"></mu-text-field>
         </mu-form-item>
         <mu-form-item>
           <mu-button color="primary" @click="login">登录</mu-button>
@@ -51,20 +51,6 @@ export default {
     }
   },
   mounted (){
-    Apis.instance("wss://bitshares.dacplay.org/ws", true).init_promise.then((res) => {
-      console.log(res);
-      console.log("connected to:", res[0].network_name);
-      ChainStore.subscribe(updateState);
-      console.log(ChainStore);
-      console.log(accountLogin);
-      this.connected = true;
-    });
-
-    let dynamicGlobal = null;
-    function updateState(object) {
-      dynamicGlobal = ChainStore.getObject("2.1.0");
-      console.log("ChainStore object update\n", dynamicGlobal ? dynamicGlobal.toJS():dynamicGlobal);
-    }
   }
 }
 </script>
