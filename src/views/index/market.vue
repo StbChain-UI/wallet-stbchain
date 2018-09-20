@@ -72,6 +72,9 @@ export default {
     RedirectToDetail(){
       this.$router.push({ path: '/Market/MarketDetail'});
     }
+  },
+  mounted (){
+    
   }
 }
 </script>
